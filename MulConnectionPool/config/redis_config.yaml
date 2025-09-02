@@ -1,0 +1,47 @@
+redis:
+#  用户近期交互贴子
+  post_click_history:
+    host: "192.168.10.3"
+    port: 6379
+    db: 12
+    max_connections: 3
+
+#近期存在操作的用户
+  recent_user_active:
+    host: "192.168.10.3"
+    port: 6379
+    db: 11
+    max_connections: 3
+#    用户近期交互过的作者
+  recent_user_author:
+    host: "192.168.10.3"
+    port: 6379
+    db: 13
+    max_connections: 3
+
+  # itemcf 结果表
+  item_cf:
+    host: "192.168.10.3"
+    port: 6379
+    db: 10
+    max_connections: 3
+#  近期发布作品结果
+  author_latest_release:
+    host: "192.168.10.3"
+    port: 6379
+    db: 8
+    max_connections: 3
+
+#  近期发布作品结果
+  item_item:
+    host: "192.168.10.3"
+    port: 6379
+    db: 7
+    max_connections: 3
+
+#  用户推送结果
+  user_pushed:
+    host: "192.168.10.3"
+    port: 6379
+    db: 6
+    max_connections: 3

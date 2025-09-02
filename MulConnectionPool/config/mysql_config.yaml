@@ -1,0 +1,68 @@
+mysql:
+  # 线上社区表
+  app_community:
+    host: "192.168.10.4"
+    user: "datanaly"
+    password: "ywxana#ly"
+    database: "app_community"
+    port: 3306
+    pool_size: 3
+    timeout: 10
+    is_default: true
+  # 本地数据库
+  bidata:
+    host: "192.168.10.3"
+    user: "root"
+    password: "123456"
+    database: "bidata"
+    port: 3307
+    pool_size: 3
+    timeout: 3
+  # 本地推荐结果表
+  content_recommend:
+    host: "192.168.10.3"
+    user: "root"
+    password: "123456"
+    database: "content_recommend"
+    port: 3307
+    pool_size: 5
+    timeout: 2
+
+  # 埋点测试表
+  jh_data_test:
+    host: "1.15.149.33"
+    user: "jgs"
+    password: "Jgsywx$123"
+    database: "jh_data"
+    port: 3306
+    pool_size: 2
+    timeout: 10
+
+  # 线上埋点正式表
+  jh_data:
+    host: "192.168.10.4"
+    user: "datanaly"
+    password: "ywxana#ly"
+    database: "jh_data"
+    port: 3306
+    pool_size: 2
+    timeout: 10
+  # 线上基础信息表
+  base_data:
+    host: "192.168.10.4"
+    user: "datanaly"
+    password: "ywxana#ly"
+    database: "base_data"
+    port: 3306
+    pool_size: 2
+    timeout: 10
+
+  # 线上活动信息表
+  growth_mine:
+    host: "192.168.10.4"
+    user: "datanaly"
+    password: "ywxana#ly"
+    database: "growth_mine"
+    port: 3306
+    pool_size: 2
+    timeout: 10

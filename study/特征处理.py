@@ -1,0 +1,310 @@
+import joblib
+
+from dataset.DatasetReturn import data_loader
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
+
+
+if __name__ == '__main__':
+    dataset = data_loader()
+    short_cat_cols = ['gender', 'language', 'channels', 'author_language']
+    long_cat_cols = ['country_code', 'author_country_code']
+    id_cols = ['uid', 'author_id', 'post_id']
+    num_cols = ['friends_num', 'binding_toys_number', 'hits_rate', 'like_rate', 'collect_rate', 'comments_rate',
+                'score']
+    ctr_tag = ['is_hit']
+
+    gender_dict = {'男':0,'女':1,'LGBT':2,'保密':3}
+    language_dict = {'en': 1, 'de': 2, 'ja': 3}
+    country_dict = {
+        'AD': 3,
+        'AL': 3,
+        'AT': 3,
+        'AX': 3,
+        'BA': 3,
+        'BE': 3,
+        'BG': 3,
+        'BY': 3,
+        'CH': 3,
+        'CZ': 3,
+        'DE': 3,
+        'DK': 3,
+        'EE': 3,
+        'ES': 3,
+        'FI': 3,
+        'FO': 3,
+        'FR': 3,
+        'GB': 3,
+        'GG': 3,
+        'GI': 3,
+        'GR': 3,
+        'HR': 3,
+        'HU': 3,
+        'IE': 3,
+        'IM': 3,
+        'IS': 3,
+        'IT': 3,
+        'JE': 3,
+        'LI': 3,
+        'LT': 3,
+        'LU': 3,
+        'LV': 3,
+        'MC': 3,
+        'MD': 3,
+        'ME': 3,
+        'MK': 3,
+        'MT': 3,
+        'NL': 3,
+        'NO': 3,
+        'PL': 3,
+        'PT': 3,
+        'RO': 3,
+        'RS': 3,
+        'RU': 3,
+        'SE': 3,
+        'SI': 3,
+        'SJ': 3,
+        'SK': 3,
+        'SM': 3,
+        'UA': 3,
+        'VA': 3,
+        'AE': 2,
+        'AF': 2,
+        'AM': 2,
+        'AZ': 2,
+        'BD': 2,
+        'BH': 2,
+        'BN': 2,
+        'BT': 2,
+        'CC': 2,
+        'CN': 2,
+        'CY': 2,
+        'GE': 2,
+        'HK': 2,
+        'ID': 2,
+        'IL': 2,
+        'IN': 2,
+        'IO': 2,
+        'IQ': 2,
+        'IR': 2,
+        'JO': 2,
+        'JP': 2,
+        'KG': 2,
+        'KH': 2,
+        'KP': 2,
+        'KR': 2,
+        'KW': 2,
+        'KZ': 2,
+        'LA': 2,
+        'LB': 2,
+        'LK': 2,
+        'MM': 2,
+        'MN': 2,
+        'MO': 2,
+        'MV': 2,
+        'MY': 2,
+        'NP': 2,
+        'OM': 2,
+        'PH': 2,
+        'PK': 2,
+        'PS': 2,
+        'QA': 2,
+        'SA': 2,
+        'SG': 2,
+        'SY': 2,
+        'TH': 2,
+        'TJ': 2,
+        'TL': 2,
+        'TM': 2,
+        'TR': 2,
+        'TW': 2,
+        'UZ': 2,
+        'VN': 2,
+        'YE': 2,
+        'AG': 1,
+        'AI': 1,
+        'AO': 1,
+        'AQ': 1,
+        'AR': 1,
+        'AS': 1,
+        'AU': 1,
+        'AW': 1,
+        'BB': 1,
+        'BF': 1,
+        'BI': 1,
+        'BJ': 1,
+        'BL': 1,
+        'BM': 1,
+        'BO': 1,
+        'BQ': 1,
+        'BR': 1,
+        'BS': 1,
+        'BV': 1,
+        'BW': 1,
+        'BZ': 1,
+        'CA': 1,
+        'CD': 1,
+        'CF': 1,
+        'CG': 1,
+        'CI': 1,
+        'CK': 1,
+        'CL': 1,
+        'CM': 1,
+        'CO': 1,
+        'CR': 1,
+        'CU': 1,
+        'CV': 1,
+        'CW': 1,
+        'CX': 1,
+        'DJ': 1,
+        'DM': 1,
+        'DO': 1,
+        'DZ': 1,
+        'EC': 1,
+        'EG': 1,
+        'EH': 1,
+        'ER': 1,
+        'ET': 1,
+        'FJ': 1,
+        'FK': 1,
+        'FM': 1,
+        'GA': 1,
+        'GD': 1,
+        'GF': 1,
+        'GH': 1,
+        'GL': 1,
+        'GM': 1,
+        'GN': 1,
+        'GP': 1,
+        'GQ': 1,
+        'GS': 1,
+        'GT': 1,
+        'GU': 1,
+        'GW': 1,
+        'GY': 1,
+        'HM': 1,
+        'HN': 1,
+        'HT': 1,
+        'JM': 1,
+        'KE': 1,
+        'KI': 1,
+        'KM': 1,
+        'KN': 1,
+        'KY': 1,
+        'LC': 1,
+        'LR': 1,
+        'LS': 1,
+        'LY': 1,
+        'MA': 1,
+        'MF': 1,
+        'MG': 1,
+        'MH': 1,
+        'ML': 1,
+        'MP': 1,
+        'MQ': 1,
+        'MR': 1,
+        'MS': 1,
+        'MU': 1,
+        'MW': 1,
+        'MX': 1,
+        'MZ': 1,
+        'NC': 1,
+        'NE': 1,
+        'NF': 1,
+        'NG': 1,
+        'NI': 1,
+        'NR': 1,
+        'NU': 1,
+        'NZ': 1,
+        'PA': 1,
+        'PE': 1,
+        'PF': 1,
+        'PG': 1,
+        'PM': 1,
+        'PN': 1,
+        'PR': 1,
+        'PW': 1,
+        'PY': 1,
+        'RE': 1,
+        'RW': 1,
+        'SB': 1,
+        'SC': 1,
+        'SD': 1,
+        'SH': 1,
+        'SL': 1,
+        'SN': 1,
+        'SO': 1,
+        'SR': 1,
+        'SS': 1,
+        'ST': 1,
+        'SV': 1,
+        'SX': 1,
+        'SZ': 1,
+        'TC': 1,
+        'TD': 1,
+        'TF': 1,
+        'TG': 1,
+        'TK': 1,
+        'TN': 1,
+        'TO': 1,
+        'TT': 1,
+        'TV': 1,
+        'TZ': 1,
+        'UG': 1,
+        'UM': 1,
+        'US': 1,
+        'UY': 1,
+        'VC': 1,
+        'VE': 1,
+        'VG': 1,
+        'VI': 1,
+        'VU': 1,
+        'WF': 1,
+        'WS': 1,
+        'YT': 1,
+        'ZA': 1,
+        'ZM': 1,
+        'ZW': 1,
+    }
+
+    dataset['language'] = dataset['language'].map(language_dict)
+    dataset['author_language'] = dataset['author_language'].map(language_dict)
+    dataset['gender'] = dataset['gender'].map(gender_dict)
+    dataset['country_code'] = dataset['country_code'].map(country_dict)
+    dataset['author_country_code'] = dataset['author_country_code'].map(country_dict)
+    dataset = dataset.fillna(0)
+    # 我们只使用行为特征列（忽略 user_id）
+    features = dataset[short_cat_cols+long_cat_cols]
+    print(features.columns)
+    # 标准化特征（K-means 对特征的尺度敏感）
+    scaler = StandardScaler()
+    scaled_features = scaler.fit_transform(features)
+
+    kmeans = KMeans(n_clusters=4, random_state=42)
+    kmeans.fit(scaled_features)
+    # 保存模型和标准化器
+    joblib.dump(kmeans, "./kmode/kmeans_model.joblib")  # 保存聚类模型
+    joblib.dump(scaler, "./kmode/scaler.joblib")  # 保存标准化器
+
+
+    dataset["cluster"] = kmeans.predict(scaled_features)
+    dataset.to_csv('./clusters.csv', index=False)
+    print('聚类结束')
+
+    # from sklearn.decomposition import PCA
+    #
+    # # 使用 PCA 将特征降到 2 维
+    # pca = PCA(n_components=2)
+    # reduced_features = pca.fit_transform(scaled_features)
+    #
+    # # 绘制散点图
+    # plt.figure(figsize=(8, 6))
+    # plt.scatter(reduced_features[:, 0], reduced_features[:, 1], c=dataset["cluster"], cmap="viridis", s=100)
+    # plt.title("User Clustering")
+    # plt.xlabel("PCA Component 1")
+    # plt.ylabel("PCA Component 2")
+    # plt.colorbar(label="Cluster")
+    # plt.show()

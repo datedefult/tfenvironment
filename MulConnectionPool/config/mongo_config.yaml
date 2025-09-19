@@ -1,7 +1,7 @@
 mongo:
 #  线上正式
   app:
-    host: "192.168.10.3"
+    host: "localhost"
     port: 27017
     username: "root"
     password: "123456"
@@ -9,7 +9,7 @@ mongo:
     maxPoolSize: 10
 # 测试环境
   app_test:
-    host: "192.168.10.3"
+    host: "localhost"
     port: 27017
     username: "root"
     password: "123456"
@@ -18,7 +18,7 @@ mongo:
 
 # 每日信息
   day_db:
-    host: "192.168.10.3"
+    host: "localhost"
     port: 27017
     username: "root"
     password: "123456"

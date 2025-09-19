@@ -1,7 +1,7 @@
 mysql:
   # 线上社区表
   app_community:
-    host: "192.168.10.4"
+    host: "localhost"
     user: "datanaly"
     password: "ywxana#ly"
     database: "app_community"
@@ -11,7 +11,7 @@ mysql:
     is_default: true
   # 本地数据库
   bidata:
-    host: "192.168.10.3"
+    host: "localhost"
     user: "root"
     password: "123456"
     database: "bidata"
@@ -20,7 +20,7 @@ mysql:
     timeout: 3
   # 本地推荐结果表
   content_recommend:
-    host: "192.168.10.3"
+    host: "localhost"
     user: "root"
     password: "123456"
     database: "content_recommend"
@@ -30,7 +30,7 @@ mysql:
 
   # 埋点测试表
   jh_data_test:
-    host: "1.15.149.33"
+    host: "localhost"
     user: "jgs"
     password: "Jgsywx$123"
     database: "jh_data"
@@ -40,7 +40,7 @@ mysql:
 
   # 线上埋点正式表
   jh_data:
-    host: "192.168.10.4"
+    host: "localhost"
     user: "datanaly"
     password: "ywxana#ly"
     database: "jh_data"
@@ -49,7 +49,7 @@ mysql:
     timeout: 10
   # 线上基础信息表
   base_data:
-    host: "192.168.10.4"
+    host: "localhost"
     user: "datanaly"
     password: "ywxana#ly"
     database: "base_data"
@@ -59,7 +59,7 @@ mysql:
 
   # 线上活动信息表
   growth_mine:
-    host: "192.168.10.4"
+    host: "localhost"
     user: "datanaly"
     password: "ywxana#ly"
     database: "growth_mine"

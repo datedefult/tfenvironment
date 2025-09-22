@@ -7,7 +7,7 @@ db = None
 
 # MongoDB URI 示例：
 # MONGO_URI = "mongodb://<username>:<password>@<host>:<port>"
-MONGO_URI = "mongodb://root:123456@192.168.10.3:27017"
+MONGO_URI = "mongodb://root:123456@localhost:27017"
 DATABASE_NAME = "app"
 
 
